@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Khorasan Herat | Home",
+    "description": "A corporate home page for Khorasan Herat with a redesigned header, footer, and blue middle showcase."
+  },
+  "brand": {
+    "name": "Khorasan Herat",
+    "tagline": "A professional presentation of the company, its services, and its internal sections"
+  },
+  "header": {
+    "languageLabel": "Language",
+    "phone": "041 - 4180",
+    "phoneLabel": "Quick contact and inquiry",
+    "quickTabs": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "/about" },
+      { "label": "Contact Us", "href": "/contact" }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Corporate, multilingual, and aligned with the visual reference",
+    "title": "Khorasan Herat Advantages",
+    "description": "Explore factory sections and key purchase advantages offered by Khorasan Herat."
+  },
+  "products": {
+    "items": [
+      {
+        "title": "Credit Sales Unit",
+        "description": "Flexible credit-based purchasing for returning customers with fast financial coordination.",
+        "alt": "View of the sales and consultation unit at Khorasan Herat",
+        "image": "/company/company-sales.jpeg",
+        "cta": "View credit terms"
+      },
+      {
+        "title": "Warranty and Quality Control",
+        "description": "Product authenticity, quality assurance, and detailed review before dispatch.",
+        "alt": "View of the warehouse and quality control process",
+        "image": "/company/company-warehouse.jpeg",
+        "cta": "Warranty details"
+      },
+      {
+        "title": "Fast Proforma Issuance",
+        "description": "Quick quotation and proforma generation for buyers and business partners.",
+        "alt": "View of the office process for fast proforma issuance",
+        "image": "/company/company-operations.jpeg",
+        "cta": "Request proforma"
+      },
+      {
+        "title": "24/7 Support",
+        "description": "Continuous support, order follow-up, and guidance throughout the purchase journey.",
+        "alt": "View of the customer support team at Khorasan Herat",
+        "image": "/company/company-support.jpeg",
+        "cta": "Contact support"
+      }
+    ]
+  },
+  "services": {
+    "items": [
+      {
+        "eyebrow": "Structure",
+        "title": "An organized two-row header",
+        "text": "The main navigation, search field, phone callout, and language switcher were redesigned to better match the supplied reference."
+      },
+      {
+        "eyebrow": "Showcase",
+        "title": "Replaceable image cards",
+        "text": "Each middle card now contains a clean placeholder image so you can swap in real company photos later without changing the layout."
+      },
+      {
+        "eyebrow": "Identity",
+        "title": "A unified #36f color system",
+        "text": "Buttons, backgrounds, shadows, and interface accents now follow the new primary blue consistently across the page."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Overview",
+    "title": "A page now ready for real corporate content",
+    "description": "This layout is now structured for future company pages, services, project showcases, team introductions, and real imagery. Swapping copy and photos later will stay straightforward.",
+    "stats": [
+      { "label": "Active languages", "value": "3" },
+      { "label": "Middle cards", "value": "4" },
+      { "label": "Primary color", "value": "#36f" }
+    ]
+  },
+  "footer": {
+    "aboutText": "Khorasan Herat now includes a multi-column footer, quick links, direct contact blocks, and a closing CTA so the overall presentation feels closer to the provided reference and more ready for expansion.",
+    "badges": ["Trust Mark", "Digital License"],
+    "quickLinksTitle": "Quick Links",
+    "companyLinksTitle": "With Khorasan Herat",
+    "sectionsTitle": "Company Sections",
+    "quickLinks": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "/about" },
+      { "label": "Contact Us", "href": "/contact" }
+    ],
+    "companyLinks": [
+      { "label": "About us", "href": "/about" },
+      { "label": "Contact the team", "href": "/contact" },
+      { "label": "FAQ", "href": "#about" },
+      { "label": "Projects and cooperation", "href": "#products" }
+    ],
+    "hoursLabel": "Response Hours",
+    "hoursValue": "Saturday to Thursday, 8:30 to 17:00",
+    "phoneLabel": "Direct Phone",
+    "phone": "041 - 4180",
+    "emailLabel": "Email",
+    "email": "info@khorasanherat.com",
+    "addressLabel": "Office Address",
+    "address": "Herat, Industrial Zone, Khorasan Herat Head Office",
+    "socials": ["Ig", "Tg", "In", "Wa"],
+    "cta": "Chat on WhatsApp",
+    "rights": "All rights for this version are reserved for Khorasan Herat"
+  }
+}

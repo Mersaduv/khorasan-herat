@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #f4f7ff;
+  --color-surface: #ffffff;
+  --color-card: rgba(255, 255, 255, 0.88);
+  --color-card-strong: #edf2ff;
+  --color-ink: #0f172a;
+  --color-muted: #667085;
+  --color-accent: #3366ff;
+  --color-accent-soft: #dfe7ff;
+  --color-line: rgba(51, 102, 255, 0.12);
+  --shadow-soft: 0 24px 60px rgba(51, 102, 255, 0.12);
+  --font-body: Tahoma, "Noto Sans Arabic", "Segoe UI", sans-serif;
+  --font-display: "Palatino Linotype", "Noto Naskh Arabic", Georgia, serif;
+  --font-latin: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background-image: radial-gradient(
+      circle at top,
+      rgba(51, 102, 255, 0.09),
+      transparent 30%
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.7) 1px, transparent 1px);
+  background-size: auto, 34px 34px, 34px 34px;
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(51, 102, 255, 0.18);
+  color: var(--color-ink);
+}
+
+@layer components {
+  .glass-panel {
+    border: 1px solid var(--color-line);
+    background: var(--color-card);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-soft);
+    border-radius: 2rem;
+  }
+
+  .section-label {
+    color: var(--color-accent);
+    display: inline-flex;
+    border-radius: 9999px;
+    background: rgba(51, 102, 255, 0.08);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.875rem;
+  }
+
+  .section-title {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--color-ink);
+  }
+
+  .section-copy {
+    margin-top: 1rem;
+    max-width: 48rem;
+    color: var(--color-muted);
+    line-height: 2;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-latin {
+    font-family: var(--font-latin);
+  }
+}
