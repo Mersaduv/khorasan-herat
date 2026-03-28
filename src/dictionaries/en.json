@@ -9,17 +9,26 @@
   },
   "header": {
     "languageLabel": "Language",
-    "phone": "041 - 4180",
+    "phone": "0790165008",
     "phoneLabel": "Quick contact and inquiry",
     "quickTabs": [
-      { "label": "Home", "href": "/" },
-      { "label": "About Us", "href": "/about" },
-      { "label": "Contact Us", "href": "/contact" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact"
+      }
     ]
   },
   "hero": {
     "eyebrow": "Corporate, multilingual, and aligned with the visual reference",
-    "title": "Khorasan Herat Advantages",
+    "title": "Reliable steel supply for projects",
     "description": "Explore factory sections and key purchase advantages offered by Khorasan Herat."
   },
   "products": {
@@ -28,28 +37,28 @@
         "title": "Credit Sales Unit",
         "description": "Flexible credit-based purchasing for returning customers with fast financial coordination.",
         "alt": "View of the sales and consultation unit at Khorasan Herat",
-        "image": "/company/company-sales.jpeg",
+        "image": "/images/c11.jpg",
         "cta": "View credit terms"
       },
       {
         "title": "Warranty and Quality Control",
         "description": "Product authenticity, quality assurance, and detailed review before dispatch.",
         "alt": "View of the warehouse and quality control process",
-        "image": "/company/company-warehouse.jpeg",
+        "image": "/images/c22.jpg",
         "cta": "Warranty details"
       },
       {
         "title": "Fast Proforma Issuance",
         "description": "Quick quotation and proforma generation for buyers and business partners.",
         "alt": "View of the office process for fast proforma issuance",
-        "image": "/company/company-operations.jpeg",
+        "image": "/images/c3.jpg",
         "cta": "Request proforma"
       },
       {
         "title": "24/7 Support",
         "description": "Continuous support, order follow-up, and guidance throughout the purchase journey.",
         "alt": "View of the customer support team at Khorasan Herat",
-        "image": "/company/company-support.jpeg",
+        "image": "/images/c4.jpg",
         "cta": "Contact support"
       }
     ]
@@ -75,41 +84,98 @@
   },
   "about": {
     "eyebrow": "Overview",
-    "title": "A page now ready for real corporate content",
-    "description": "This layout is now structured for future company pages, services, project showcases, team introductions, and real imagery. Swapping copy and photos later will stay straightforward.",
-    "stats": [
-      { "label": "Active languages", "value": "3" },
-      { "label": "Middle cards", "value": "4" },
-      { "label": "Primary color", "value": "#36f" }
+    "title": "Company history, trust, and long-term collaboration",
+    "description": "Within its first three years, Khorasan Herat has focused on building trust through responsive communication, steady order handling, and practical support for repeat and project-based buyers."
+  },
+  "companyProfile": {
+    "eyebrow": "Company Snapshot",
+    "title": "A stronger profile built around growth, trust, and customer confidence",
+    "description": "Instead of emphasizing the number of years alone, this section highlights more useful indicators for visitors: active customers, completed orders, partner projects, and satisfaction shown through animated counters.",
+    "highlights": [
+      "Built to present company history in a more credible and user-facing way",
+      "Useful for showing scale to project buyers, contractors, and repeat customers",
+      "Even in its first three years, the company has focused on trust, reliable delivery, and direct customer communication"
+    ],
+    "counters": [
+      {
+        "label": "Active and Repeat Customers",
+        "value": 1250,
+        "suffix": "+"
+      },
+      {
+        "label": "Partner Projects and Companies",
+        "value": 320,
+        "suffix": "+"
+      },
+      {
+        "label": "Completed Orders",
+        "value": 860,
+        "suffix": "+"
+      },
+      {
+        "label": "Customer Satisfaction",
+        "value": 96,
+        "suffix": "%"
+      }
     ]
   },
   "footer": {
-    "aboutText": "Khorasan Herat now includes a multi-column footer, quick links, direct contact blocks, and a closing CTA so the overall presentation feels closer to the provided reference and more ready for expansion.",
+    "aboutText": "Khorasan Herat supplies steel products and construction-ready iron materials with an emphasis on responsive communication, fast proforma issuance, and dependable coordination for project-based buyers.",
     "badges": ["Trust Mark", "Digital License"],
     "quickLinksTitle": "Quick Links",
     "companyLinksTitle": "With Khorasan Herat",
     "sectionsTitle": "Company Sections",
     "quickLinks": [
-      { "label": "Home", "href": "/" },
-      { "label": "About Us", "href": "/about" },
-      { "label": "Contact Us", "href": "/contact" }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact"
+      }
     ],
     "companyLinks": [
-      { "label": "About us", "href": "/about" },
-      { "label": "Contact the team", "href": "/contact" },
-      { "label": "FAQ", "href": "#about" },
-      { "label": "Projects and cooperation", "href": "#products" }
+      {
+        "label": "About us",
+        "href": "/about"
+      },
+      {
+        "label": "Contact the team",
+        "href": "/contact"
+      },
+      {
+        "label": "FAQ",
+        "href": "#company-profile"
+      },
+      {
+        "label": "Projects and cooperation",
+        "href": "#products"
+      }
     ],
     "hoursLabel": "Response Hours",
-    "hoursValue": "Saturday to Thursday, 8:30 to 17:00",
+    "hoursValue": "24/7",
     "phoneLabel": "Direct Phone",
-    "phone": "041 - 4180",
+    "phone": "0790165008",
+    "phones": ["0790165008", "0799800454", "0794543106"],
     "emailLabel": "Email",
     "email": "info@khorasanherat.com",
+    "emails": ["info@khorasanherat.com", "khorasanherat@gmail.com"],
+    "telegramLabel": "Telegram",
+    "telegramChannel": "@khorasanherat",
+    "telegramContact": "@khodairhamCom",
+    "instagram": "https://www.instagram.com/khorasan_herat_iron_compani",
+    "facebook": "https://www.facebook.com/share/16MXcQSssK",
     "addressLabel": "Office Address",
-    "address": "Herat, Industrial Zone, Khorasan Herat Head Office",
+    "address": "Darb Malik, Sarak Manaraha, beside Shahzadegan 9, Herat, Khorasan Herat Head Office",
     "socials": ["Ig", "Tg", "In", "Wa"],
     "cta": "Chat on WhatsApp",
-    "rights": "All rights for this version are reserved for Khorasan Herat"
+    "telegramCta": "Open Telegram channel",
+    "telegramContactCta": "Contact Telegram admin",
+    "rights": "All rights reserved for Khorasan Herat"
   }
 }

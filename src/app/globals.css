@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "IRANSansX";
+  src: url("/fonts/IRANSansX-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("/fonts/IRANSansX-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("/fonts/IRANSansX-DemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IRANSansX";
+  src: url("/fonts/IRANSansX-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --color-background: #f4f7ff;
   --color-surface: #ffffff;
@@ -11,8 +43,8 @@
   --color-accent-soft: #dfe7ff;
   --color-line: rgba(51, 102, 255, 0.12);
   --shadow-soft: 0 24px 60px rgba(51, 102, 255, 0.12);
-  --font-body: Tahoma, "Noto Sans Arabic", "Segoe UI", sans-serif;
-  --font-display: "Palatino Linotype", "Noto Naskh Arabic", Georgia, serif;
+  --font-body: "IRANSansX", Tahoma, "Noto Sans Arabic", "Segoe UI", sans-serif;
+  --font-display: "IRANSansX", Tahoma, "Noto Naskh Arabic", "Segoe UI", sans-serif;
   --font-latin: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
 }
 
@@ -21,6 +53,7 @@
 }
 
 html {
+  min-height: 100%;
   scroll-behavior: smooth;
 }
 
@@ -29,6 +62,7 @@ body {
   background: var(--color-background);
   color: var(--color-ink);
   font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
 }
 
 body::before {

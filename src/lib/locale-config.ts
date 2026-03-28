@@ -10,7 +10,7 @@ export const localeDetails: Record<
 > = {
   fa: {
     direction: "rtl",
-    label: "دری | فارسی",
+    label: "فارسی",
   },
   ps: {
     direction: "rtl",

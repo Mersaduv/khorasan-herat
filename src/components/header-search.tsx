@@ -6,26 +6,44 @@ import Link from "next/link";
 type SearchArticle = {
   href: string;
   title: string;
+  excerpt?: string;
+  source?: string;
 };
 
 type HeaderSearchProps = Readonly<{
   articles: SearchArticle[];
   placeholder: string;
   direction?: "rtl" | "ltr";
+  idleLabel?: string;
+  resultLabel?: string;
+  emptyLabel?: string;
 }>;
 
 export function HeaderSearch({
   articles,
   placeholder,
   direction = "rtl",
+  idleLabel,
+  resultLabel,
+  emptyLabel,
 }: HeaderSearchProps) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  const normalizedQuery = query.trim().toLowerCase();
+  const fallbackIdleLabel = direction === "rtl" ? "مطالب" : "Articles";
+  const fallbackResultLabel = direction === "rtl" ? "نتیجه جستجو" : "Search results";
+  const fallbackEmptyLabel =
+    direction === "rtl"
+      ? "برای این جستجو نتیجه‌ای پیدا نشد."
+      : "No matching article was found.";
   const filteredArticles = articles.filter((article) =>
-    article.title.toLowerCase().includes(query.toLowerCase()),
+    `${article.title} ${article.excerpt ?? ""}`.toLowerCase().includes(normalizedQuery),
   );
+  const visibleArticles = normalizedQuery
+    ? filteredArticles
+    : articles.slice(0, Math.min(4, articles.length));
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
@@ -55,13 +73,13 @@ export function HeaderSearch({
         <input
           className="w-full bg-transparent text-sm text-[var(--color-ink)] outline-none placeholder:text-[var(--color-muted)]"
           dir={direction}
-          style={{ textAlign: direction === "rtl" ? "right" : "left" }}
           onChange={(event) => {
             setQuery(event.target.value);
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
           placeholder={placeholder}
+          style={{ textAlign: direction === "rtl" ? "right" : "left" }}
           value={query}
         />
       </div>
@@ -74,21 +92,40 @@ export function HeaderSearch({
         }`}
       >
         <div className="border-b border-[var(--color-line)] px-4 py-3 text-xs font-semibold text-[var(--color-muted)]">
-          {query ? "نتیجه جستجو" : "چند مقاله پیشنهادی"}
+          {normalizedQuery ? (resultLabel ?? fallbackResultLabel) : (idleLabel ?? fallbackIdleLabel)}
         </div>
+
         <div className="p-2">
-          {(filteredArticles.length > 0 ? filteredArticles : articles.slice(0, 4)).map(
-            (article) => (
+          {visibleArticles.length > 0 ? (
+            visibleArticles.map((article) => (
               <Link
-                className="flex items-center justify-between rounded-[0.8rem] px-3 py-3 text-sm text-[var(--color-ink)] transition-colors hover:bg-[var(--color-card-strong)]"
+                className="flex items-center justify-between gap-4 rounded-[0.8rem] px-3 py-3 text-sm text-[var(--color-ink)] transition-colors hover:bg-[var(--color-card-strong)]"
                 href={article.href}
                 key={article.title}
                 onClick={() => setIsOpen(false)}
+                rel="noreferrer"
+                target="_blank"
               >
-                <span>{article.title}</span>
-                <span className="text-[var(--color-accent)]">←</span>
+                <span className="flex min-w-0 flex-col">
+                  <span>{article.title}</span>
+                  {article.excerpt ? (
+                    <span className="mt-1 line-clamp-2 text-xs leading-6 text-[var(--color-muted)]">
+                      {article.excerpt}
+                    </span>
+                  ) : null}
+                  {article.source ? (
+                    <span className="mt-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-accent)]">
+                      {article.source}
+                    </span>
+                  ) : null}
+                </span>
+                <span className="shrink-0 text-[var(--color-accent)]">↖</span>
               </Link>
-            ),
+            ))
+          ) : (
+            <div className="px-3 py-4 text-sm leading-7 text-[var(--color-muted)]">
+              {emptyLabel ?? fallbackEmptyLabel}
+            </div>
           )}
         </div>
       </div>

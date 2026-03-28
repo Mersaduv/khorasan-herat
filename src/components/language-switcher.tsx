@@ -30,6 +30,7 @@ export function LanguageSwitcher({
   const [menuPosition, setMenuPosition] = useState<MenuPosition | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const isRtl = currentLocale !== "en";
 
   const currentLabel = useMemo(
@@ -57,7 +58,10 @@ export function LanguageSwitcher({
 
     function handlePointerDown(event: MouseEvent) {
       const target = event.target as Node;
-      if (!wrapperRef.current?.contains(target)) {
+      const clickedTrigger = wrapperRef.current?.contains(target);
+      const clickedMenu = menuRef.current?.contains(target);
+
+      if (!clickedTrigger && !clickedMenu) {
         setIsOpen(false);
       }
     }
@@ -94,22 +98,16 @@ export function LanguageSwitcher({
   return (
     <div className="relative" ref={wrapperRef}>
       <button
+        aria-controls="language-switcher-menu"
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-label={languageLabel}
-        className="flex min-w-[118px] items-center justify-between gap-3 rounded-[0.65rem] border border-black/10 bg-white/85 px-3 py-3 text-[15px] font-medium text-[var(--color-ink)] backdrop-blur-sm shadow-[0_6px_18px_rgba(15,23,42,0.05)] transition-all hover:border-black/20"
+        className="flex min-w-[118px] items-center justify-between gap-3 rounded-[0.65rem] border border-black/10 bg-white/85 px-3 py-3 text-[15px] font-medium text-[var(--color-ink)] shadow-[0_6px_18px_rgba(15,23,42,0.05)] backdrop-blur-sm transition-all hover:border-black/20"
         onClick={() => setIsOpen((open) => !open)}
         ref={buttonRef}
         type="button"
       >
-        <span
-          className={`text-[11px] text-black/55 transition-transform ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        >
-          ▼
-        </span>
-        <span className="text-base leading-none">{currentLocale}</span>
+        <span className="text-base leading-none">{localeDetails[currentLocale].label}</span>
         <svg
           aria-hidden="true"
           className="h-4 w-4 text-black/80"
@@ -123,16 +121,34 @@ export function LanguageSwitcher({
             strokeWidth="1.4"
           />
         </svg>
+        <svg
+          aria-hidden="true"
+          className={`h-3.5 w-3.5 text-black/55 transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+          fill="none"
+          viewBox="0 0 12 12"
+        >
+          <path
+            d="m2 4 4 4 4-4"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+          />
+        </svg>
       </button>
 
       {portalTarget && menuPosition
         ? createPortal(
             <div
-              className={`fixed z-[100] overflow-hidden rounded-[0.8rem] border border-black/8 bg-white/95 p-1.5 backdrop-blur-md shadow-[0_18px_36px_rgba(15,23,42,0.12)] transition-all ${
+              className={`fixed z-[100] overflow-hidden rounded-[0.8rem] border border-black/8 bg-white/95 p-1.5 shadow-[0_18px_36px_rgba(15,23,42,0.12)] backdrop-blur-md transition-all ${
                 isOpen
                   ? "pointer-events-auto translate-y-0 opacity-100"
                   : "pointer-events-none -translate-y-1 opacity-0"
               }`}
+              id="language-switcher-menu"
+              ref={menuRef}
               role="menu"
               style={{
                 left: menuPosition.left,
@@ -148,7 +164,7 @@ export function LanguageSwitcher({
                     aria-current={isActive ? "page" : undefined}
                     className={`flex items-center justify-between rounded-[0.55rem] px-3 py-3 text-[15px] transition-colors ${
                       isActive
-                        ? "bg-[#4c9688] font-semibold text-white"
+                        ? "bg-[#36f] font-semibold text-white"
                         : "text-[var(--color-ink)] hover:bg-black/5"
                     }`}
                     href={`/${locale}${pathSuffix}`}

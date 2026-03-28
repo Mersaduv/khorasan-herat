@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AnimatedCounter } from "@/components/animated-counter";
 import { SiteShell } from "@/components/site-shell";
 import {
   buildLocaleMetadata,
@@ -22,6 +23,7 @@ export async function generateMetadata({
 export default async function AboutPage({ params }: LocalePageProps) {
   const { locale } = await params;
   const { dictionary, locale: activeLocale } = await getLocaleData(locale);
+  const companyProfile = dictionary.companyProfile;
 
   return (
     <SiteShell
@@ -43,17 +45,37 @@ export default async function AboutPage({ params }: LocalePageProps) {
         </section>
 
         <section className="grid gap-5 lg:grid-cols-3">
-          {dictionary.about.stats.map((item) => (
+          {companyProfile.highlights.map((item: string) => (
             <article
               className="rounded-[1.6rem] border border-[var(--color-line)] bg-white p-6 shadow-[0_16px_35px_rgba(15,23,42,0.04)]"
-              key={item.label}
+              key={item}
             >
-              <div className="text-sm text-[var(--color-muted)]">{item.label}</div>
-              <div className="mt-3 text-3xl font-semibold text-[var(--color-accent)]">
-                {item.value}
-              </div>
+              <p className="text-sm leading-8 text-[var(--color-ink)] sm:text-base">
+                {item}
+              </p>
             </article>
           ))}
+        </section>
+
+        <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {companyProfile.counters.map(
+            (item: { label: string; value: number; prefix?: string; suffix?: string }) => (
+              <article
+                className="rounded-[1.6rem] border border-[var(--color-line)] bg-white p-6 shadow-[0_16px_35px_rgba(15,23,42,0.04)]"
+                key={item.label}
+              >
+                <div className="text-sm text-[var(--color-muted)]">{item.label}</div>
+                <div className="mt-3 text-3xl font-semibold text-[var(--color-accent)]">
+                  <AnimatedCounter
+                    locale={activeLocale}
+                    prefix={item.prefix}
+                    suffix={item.suffix}
+                    value={item.value}
+                  />
+                </div>
+              </article>
+            ),
+          )}
         </section>
 
         <section className="grid gap-5 lg:grid-cols-3">
