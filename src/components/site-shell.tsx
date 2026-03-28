@@ -18,7 +18,7 @@ export function SiteShell({
   pathSuffix = "",
 }: SiteShellProps) {
   return (
-    <div className="relative isolate min-h-screen overflow-x-hidden">
+    <div className="relative isolate min-h-screen overflow-x-hidden bg-slate-50">
       <SiteHeader
         dictionary={dictionary}
         locale={locale}

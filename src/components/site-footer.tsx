@@ -42,8 +42,8 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
           <div className="grid gap-10 xl:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]">
             <div className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-[1.35rem] bg-[var(--color-accent-soft)]">
-                  <Image alt={dictionary.brand.name} height={58} src="/images/logo.png" width={58} />
+                <div className="flex h-24 w-2h-24 items-center justify-center overflow-hidden rounded-[1.35rem] bg-[var(--color-accent-soft)]">
+                  <Image alt={dictionary.brand.name} height={100} src="/images/logo.png" width={100} />
                 </div>
                 <div>
                   <h2 className="font-display text-2xl font-semibold text-[var(--color-ink)]">
