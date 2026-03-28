@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import "@/app/globals.css";
 
 import { getDirection, hasLocale, locales } from "@/lib/i18n";
@@ -9,6 +10,14 @@ type LocaleLayoutProps = Readonly<{
 }>;
 
 export const dynamicParams = false;
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon.ico",
+    apple: "/images/favicon.ico",
+  },
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
