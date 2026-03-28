@@ -359,18 +359,11 @@ export default async function HomePage({ params }: LocalePageProps) {
           id="products"
         >
           <div className="relative">
-            <video
+            <div
               aria-hidden="true"
-              autoPlay
-              className="absolute inset-0 h-full w-full object-cover"
-              loop
-              muted
-              playsInline
-              poster="/images/slider_bg.webp"
-              preload="metadata"
-            >
-              <source src="/vids/video_2026-03-28_16-20-20.mp4" type="video/mp4" />
-            </video>
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/images/slider_bg.webp')" }}
+            />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_34%),linear-gradient(180deg,rgba(10,26,94,0.45),rgba(24,57,198,0.72)_42%,rgba(51,102,255,0.88))]" />
             <div className="absolute inset-x-[8%] top-6 hidden h-24 rounded-full bg-white/10 blur-3xl lg:block" />
 
