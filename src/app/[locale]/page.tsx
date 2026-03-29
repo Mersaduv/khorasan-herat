@@ -3,6 +3,7 @@ import Image from "next/image";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 
 import { AnimatedCounter } from "@/components/animated-counter";
+import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import type { Locale } from "@/lib/i18n";
 import {
@@ -10,6 +11,13 @@ import {
   getLocaleData,
   type LocalePageProps,
 } from "@/lib/locale-page";
+import {
+  buildBreadcrumbStructuredData,
+  buildFaqStructuredData,
+  getAbsoluteUrl,
+  getCanonicalUrl,
+  getSiteUrl,
+} from "@/lib/seo";
 
 const TELEGRAM_CHANNEL_URL = "https://t.me/khorasanherat";
 
@@ -37,6 +45,26 @@ type ProductDetailSection = {
   bullets: string[];
   contacts?: ArticleContact[];
   ctas?: ArticleCta[];
+};
+
+type FaqItem = {
+  answer: string;
+  question: string;
+};
+
+type HomeSeoSection = {
+  description: string;
+  eyebrow: string;
+  faqs: FaqItem[];
+  faqTitle: string;
+  marketCoverage: string[];
+  marketCoverageTitle: string;
+  paragraphs: string[];
+  productDescription: string;
+  productHighlights: string[];
+  productHighlightsTitle: string;
+  productName: string;
+  title: string;
 };
 
 const productDetailSections: Record<Locale, ProductDetailSection[]> = {
@@ -297,6 +325,159 @@ const productDetailSections: Record<Locale, ProductDetailSection[]> = {
   ],
 };
 
+const homeSeoSections: Record<Locale, HomeSeoSection> = {
+  fa: {
+    eyebrow: "سئوی محتوایی و معرفی تخصصی",
+    title: "تولید میلگرد و تأمین محصولات فولادی برای پروژه‌های ساختمانی، صنعتی و عمرانی افغانستان",
+    description:
+      "این صفحه به‌صورت هدفمند روی کلمات کلیدی اصلی برند و بازار هدف بازنویسی شده تا کاربر و موتور جستجو هر دو دقیق‌تر بفهمند هرات خراسان چه چیزی تولید می‌کند، چه مزیتی دارد و برای چه نوع پروژه‌هایی مناسب است.",
+    paragraphs: [
+      "هرات خراسان به‌عنوان یک مجموعه فعال در صنعت فولاد افغانستان، روی تولید میلگرد و سیخ‌گول از سایز ۸ تا ۳۲ میلی‌متر تمرکز دارد. ترکیب این دامنه تولید با فروش مستقیم، کنترل کیفیت، تست لابراتوار و پاسخ‌گویی سریع، تصویری روشن از یک برند پروژه‌محور ارائه می‌دهد.",
+      "تمرکز محتوایی این صفحه فقط معرفی ظاهری شرکت نیست. در متن‌ها و ساختار سئو، عباراتی مانند کارخانه میلگرد هرات، فروش میلگرد افغانستان، محصولات فولادی برای پروژه‌های ساختمانی و صدور سریع پیش‌فاکتور به‌شکل طبیعی استفاده شده‌اند تا هم جستجوهای برند و هم جستجوهای محصولی پوشش داده شوند.",
+    ],
+    productHighlightsTitle: "محورهای کلیدی محصول و مزیت رقابتی",
+    productHighlights: [
+      "تولید میلگرد و سیخ‌گول از سایز ۸ تا ۳۲ میلی‌متر برای پروژه‌های کوچک تا بزرگ",
+      "اشاره مستقیم به استاندارد ASTM و گریدهای 60 و 75 برای افزایش اعتماد فنی خریدار",
+      "کنترل کیفیت، وزن دقیق، تست لابراتوار و آمادگی برای تحویل پروژه‌ای",
+      "فروش مستقیم، پیش‌فاکتور سریع و هماهنگی برای خریداران عمده و پروژه‌ای",
+    ],
+    marketCoverageTitle: "بازار هدف و جستجوهای پوشش‌داده‌شده",
+    marketCoverage: [
+      "خرید میلگرد در هرات و افغانستان",
+      "تامین آهن آلات و محصولات فولادی برای پروژه‌های ساختمانی و عمرانی",
+      "فروش عمده میلگرد برای پیمانکاران، مجریان و خریداران پروژه‌ای",
+      "استعلام قیمت، ثبت سفارش و دریافت پیش‌فاکتور از تولیدکننده فولاد در هرات",
+    ],
+    faqTitle: "پرسش‌های پرتکرار خریداران",
+    faqs: [
+      {
+        question: "هرات خراسان چه محصولاتی را بیشتر عرضه می‌کند؟",
+        answer:
+          "تمرکز اصلی شرکت روی تولید و عرضه میلگرد و سیخ‌گول در بازه ۸ تا ۳۲ میلی‌متر و همچنین تأمین محصولات فولادی برای پروژه‌های ساختمانی، صنعتی و عمرانی است.",
+      },
+      {
+        question: "آیا این شرکت برای خریدهای عمده و پروژه‌ای مناسب است؟",
+        answer:
+          "بله. محتوای سایت و مسیرهای ارتباطی شرکت نشان می‌دهند که فروش مستقیم، صدور سریع پیش‌فاکتور، هماهنگی سفارش و پیگیری برای مشتریان پروژه‌ای و خریداران عمده از اولویت‌های مجموعه است.",
+      },
+      {
+        question: "چه مزیت‌هایی برای اعتماد به کیفیت محصول مطرح شده است؟",
+        answer:
+          "در معرفی برند روی کنترل کیفیت، استاندارد ASTM، گریدهای 60 و 75، وزن دقیق و تست لابراتوار تاکید شده تا خریدار پیش از سفارش شناخت فنی روشن‌تری داشته باشد.",
+      },
+      {
+        question: "چطور می‌توان برای استعلام یا سفارش با هرات خراسان ارتباط گرفت؟",
+        answer:
+          "کاربر می‌تواند از طریق شماره‌های تماس، واتساپ، ایمیل رسمی و کانال تلگرام شرکت برای استعلام قیمت، دریافت پیش‌فاکتور و هماهنگی فروش اقدام کند.",
+      },
+    ],
+    productName: "میلگرد و سیخ‌گول هرات خراسان",
+    productDescription:
+      "میلگرد و محصولات فولادی پروژه‌محور در سایز ۸ تا ۳۲ میلی‌متر با تمرکز بر کیفیت، فروش مستقیم و تأمین قابل اتکا برای پروژه‌های افغانستان.",
+  },
+  ps: {
+    eyebrow: "سيويي محتوا او تخصصي پېژندنه",
+    title: "د افغانستان د ساختماني، صنعتي او عمراني پروژو لپاره د میلګرد او فولادي محصولاتو تامين",
+    description:
+      "دا پاڼه داسې جوړه شوې چې هم کاروونکي او هم د لټون ماشينونه په روښانه ډول درک کړي چې خراسان هرات څه توليدوي، څه ډول پېرودونکو ته خدمت کوي او اصلي رقابتي ګټه يې څه ده.",
+    paragraphs: [
+      "خراسان هرات د افغانستان د فولادو په بازار کې د میلګرد او سيخ ګول د توليد پر محور ولاړ برانډ دی. د ۸ تر ۳۲ ملي متره توليدي لړۍ، د کیفیت کنټرول، د لابراتوار ازموينه او د پلور مستقيمه همغږي دا برانډ د پروژو لپاره لا باوري کوي.",
+      "په دې پاڼه کې د هرات د میلګرد فابریکه، د افغانستان د فولادي محصولاتو پلور، د پروژو لپاره د اوسپنې تامين او چټک پیش‌فاکتور غوندې مهمې کليدي جملې په طبيعي ډول ځای پر ځای شوې دي څو برانډي او محصولي لټونونه دواړه پیاوړي شي.",
+    ],
+    productHighlightsTitle: "د محصول او سیالۍ اصلي ټکي",
+    productHighlights: [
+      "له ۸ تر ۳۲ ملي متره میلګرد او سيخ ګول د بېلابېلو پروژو لپاره",
+      "د ASTM معیار او 60 او 75 ګریډونو یادونه د تخنیکي باور د زیاتولو لپاره",
+      "کیفیت کنټرول، دقیق وزن، لابراتواري ازموینه او د پروژې لپاره چمتو تحویل",
+      "مستقيم پلور، چټک پیش‌فاکتور او د عمده او پروژوي پېرودونکو لپاره همغږي",
+    ],
+    marketCoverageTitle: "هدف بازار او پوښل شوې لټونونه",
+    marketCoverage: [
+      "په هرات او افغانستان کې د میلګرد پېرود",
+      "د ساختماني او عمراني پروژو لپاره د فولادي محصولاتو تامين",
+      "د قرارداديانو او عمده خریدارانو لپاره د میلګرد عمده پلور",
+      "د قیمت استعلام، سفارش ثبت او د پیش‌فاکتور ترلاسه کول",
+    ],
+    faqTitle: "د پېرودونکو ډېر تکرارېدونکي پوښتنې",
+    faqs: [
+      {
+        question: "خراسان هرات تر ټولو ډېر کوم محصولات وړاندې کوي؟",
+        answer:
+          "د شرکت اصلي تمرکز د ۸ تر ۳۲ ملي متره میلګرد او سيخ ګول په توليد او همدارنګه د ساختماني او صنعتي پروژو لپاره د فولادي محصولاتو پر تامين دی.",
+      },
+      {
+        question: "ایا دا شرکت د عمده او پروژوي پېر لپاره مناسب دی؟",
+        answer:
+          "هو. د ويب پاڼې محتوا ښيي چې مستقيم پلور، چټک پیش‌فاکتور، د سفارش همغږي او تعقيب د پروژوي او عمده خریدارانو لپاره د شرکت له مهمو خدمتونو څخه دي.",
+      },
+      {
+        question: "د محصول د کیفیت لپاره کوم باور ورکوونکي ټکي یاد شوي؟",
+        answer:
+          "په برانډ معرفي کې د کیفیت کنټرول، ASTM معیار، 60 او 75 ګریډونه، دقیق وزن او لابراتواري ازموینه په واضح ډول یاد شوي دي.",
+      },
+      {
+        question: "د استعلام یا سفارش لپاره څنګه اړیکه نیول کېدای شي؟",
+        answer:
+          "کاروونکي کولای شي د شرکت له ټیلیفون، واتساپ، رسمي برېښنالیک او ټیلیګرامي چینل څخه د قیمت، پیش‌فاکتور او همغږۍ لپاره ګټه واخلي.",
+      },
+    ],
+    productName: "د خراسان هرات میلګرد او فولادي محصولات",
+    productDescription:
+      "د ۸ تر ۳۲ ملي متره میلګرد او فولادي محصولاتو تامين د افغانستان د پروژو لپاره، له کیفیت کنټرول او چټک پلور همغږۍ سره.",
+  },
+  en: {
+    eyebrow: "Search-focused company positioning",
+    title: "Rebar manufacturing and steel product supply for construction projects in Herat and across Afghanistan",
+    description:
+      "This page is written to clarify the company’s real commercial focus for both users and search engines: rebar manufacturing, steel product supply, direct sales coordination, and project-ready support.",
+    paragraphs: [
+      "Khorasan Herat positions itself as a steel manufacturer and supplier serving construction, industrial, and infrastructure projects. Its strongest product signal is rebar and steel bars from 8 mm to 32 mm, supported by quality control, laboratory testing, and responsive sales coordination.",
+      "The homepage copy now naturally targets high-intent searches such as Herat rebar manufacturer, Afghanistan steel supplier, project steel supply, wholesale rebar sales, and fast proforma issuance. That helps the site compete not only for brand searches but also for product and procurement queries.",
+    ],
+    productHighlightsTitle: "Core product and commercial strengths",
+    productHighlights: [
+      "Rebar and steel bar production from 8 mm to 32 mm for a wide range of project types",
+      "Clear references to ASTM and grade 60 and 75 production to strengthen technical trust",
+      "Quality control, accurate weight, laboratory testing, and dispatch readiness",
+      "Direct sales, fast proforma issuance, and smoother coordination for wholesale buyers",
+    ],
+    marketCoverageTitle: "Target market and search intent coverage",
+    marketCoverage: [
+      "Buying rebar in Herat and across Afghanistan",
+      "Steel products for construction, industrial, and infrastructure projects",
+      "Wholesale rebar supply for contractors, project buyers, and commercial procurement teams",
+      "Price inquiry, order preparation, and proforma requests from a Herat steel company",
+    ],
+    faqTitle: "Frequently asked buyer questions",
+    faqs: [
+      {
+        question: "What does Khorasan Herat primarily sell?",
+        answer:
+          "The strongest product focus is rebar and steel bars in the 8 mm to 32 mm range, along with project-oriented steel supply for construction and industrial demand.",
+      },
+      {
+        question: "Is the company suitable for wholesale and project buyers?",
+        answer:
+          "Yes. The site content clearly emphasizes direct sales coordination, proforma issuance, project-ready communication, and support for repeat and large-volume buyers.",
+      },
+      {
+        question: "What quality signals are highlighted on the website?",
+        answer:
+          "The brand messaging repeatedly points to quality control, ASTM references, grade 60 and 75 positioning, accurate weight, and laboratory-backed testing.",
+      },
+      {
+        question: "How can a buyer request pricing or a proforma?",
+        answer:
+          "Buyers can use the company phone numbers, WhatsApp, official email addresses, and Telegram channel to request pricing, send order details, and coordinate a proforma.",
+      },
+    ],
+    productName: "Khorasan Herat rebar and steel products",
+    productDescription:
+      "Rebar and project steel supply from 8 mm to 32 mm with quality control, direct sales coordination, and wholesale readiness for Afghanistan.",
+  },
+};
+
 function ContactIcon({ type }: { type: ContactType }) {
   if (type === "phone") {
     return (
@@ -338,7 +519,44 @@ export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
-  return buildLocaleMetadata(locale);
+  const { locale: activeLocale } = await getLocaleData(locale);
+
+  return buildLocaleMetadata(activeLocale, "", {
+    title:
+      activeLocale === "en"
+        ? "Khorasan Herat | Rebar and Steel Products Supplier in Herat, Afghanistan"
+        : activeLocale === "ps"
+          ? "خراسان هرات | په هرات کې د میلګرد او فولادي محصولاتو عرضه کوونکی"
+          : "هرات خراسان | تولید میلگرد و محصولات فولادی در هرات برای پروژه‌های افغانستان",
+    description:
+      activeLocale === "en"
+        ? "Official multilingual website of Khorasan Herat for rebar manufacturing, steel products, wholesale supply, quality control, and fast project sales coordination in Afghanistan."
+        : activeLocale === "ps"
+          ? "د خراسان هرات رسمي وېب‌پاڼه د میلګرد توليد، فولادي محصولاتو، عمده پلور، کیفیت کنټرول او د افغانستان د پروژو لپاره د چټک پلور همغږۍ لپاره."
+          : "وب‌سایت رسمی هرات خراسان برای تولید میلگرد، فروش محصولات فولادی، تامین عمده پروژه‌ها، کنترل کیفیت و صدور سریع پیش‌فاکتور در افغانستان.",
+    imagePath: "/company/company-projects.jpeg",
+    keywords:
+      activeLocale === "en"
+        ? [
+            "rebar manufacturer Herat",
+            "steel supplier Afghanistan",
+            "wholesale steel products Herat",
+            "project steel coordination",
+          ]
+        : activeLocale === "ps"
+          ? [
+              "د هرات میلګرد فابریکه",
+              "د افغانستان فولادي محصولات",
+              "د پروژو لپاره د اوسپنې تامين",
+              "چټک پیش فاکتور",
+            ]
+          : [
+              "کارخانه میلگرد هرات",
+              "فروش محصولات فولادی افغانستان",
+              "تامین فولاد پروژه‌های ساختمانی",
+              "پیش فاکتور سریع میلگرد",
+            ],
+  });
 }
 
 export default async function HomePage({ params }: LocalePageProps) {
@@ -346,7 +564,80 @@ export default async function HomePage({ params }: LocalePageProps) {
   const { dictionary, locale: activeLocale } = await getLocaleData(locale);
   const isEnglish = activeLocale === "en";
   const productDetails = productDetailSections[activeLocale];
+  const seoContent = homeSeoSections[activeLocale];
   const companyProfile = dictionary.companyProfile;
+  const canonicalUrl = getCanonicalUrl(activeLocale);
+  const breadcrumbData = buildBreadcrumbStructuredData(activeLocale, [
+    {
+      name: activeLocale === "en" ? "Home" : activeLocale === "ps" ? "کور" : "خانه",
+      path: "",
+    },
+  ]);
+  const faqData = buildFaqStructuredData(seoContent.faqs);
+  const pageStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name:
+          activeLocale === "en"
+            ? "Khorasan Herat Home"
+            : activeLocale === "ps"
+              ? "د خراسان هرات کور"
+              : "خانه هرات خراسان",
+        description: seoContent.description,
+        inLanguage: activeLocale,
+        isPartOf: {
+          "@id": `${getSiteUrl()}/#website`,
+        },
+        about: {
+          "@id": `${getSiteUrl()}/#organization`,
+        },
+      },
+      {
+        "@type": "Product",
+        "@id": `${canonicalUrl}#main-product`,
+        name: seoContent.productName,
+        description: seoContent.productDescription,
+        brand: {
+          "@type": "Brand",
+          name: dictionary.brand.name,
+        },
+        category: activeLocale === "en" ? "Steel Rebar" : "میلگرد و محصولات فولادی",
+        material: "Steel",
+        image: getAbsoluteUrl("/company/company-projects.jpeg"),
+        additionalProperty: [
+          {
+            "@type": "PropertyValue",
+            name: activeLocale === "en" ? "Production range" : "بازه تولید",
+            value: activeLocale === "en" ? "8 mm to 32 mm" : "۸ تا ۳۲ میلی‌متر",
+          },
+          {
+            "@type": "PropertyValue",
+            name: "Standard",
+            value: "ASTM",
+          },
+          {
+            "@type": "PropertyValue",
+            name: activeLocale === "en" ? "Grades" : "گریدها",
+            value: "60, 75",
+          },
+        ],
+      },
+      ...dictionary.products.items.map((item, index) => ({
+        "@type": "Service",
+        "@id": `${canonicalUrl}#service-${index + 1}`,
+        name: item.title,
+        description: item.description,
+        provider: {
+          "@id": `${getSiteUrl()}/#organization`,
+        },
+        areaServed: "Afghanistan",
+      })),
+    ],
+  };
 
   return (
     <SiteShell dictionary={dictionary} locale={activeLocale}>
@@ -354,6 +645,10 @@ export default async function HomePage({ params }: LocalePageProps) {
         className="mx-auto flex w-full max-w-[1920px] flex-col gap-10 px-0 pb-14 pt-0"
         id="home"
       >
+        <JsonLd data={breadcrumbData} />
+        <JsonLd data={pageStructuredData} />
+        <JsonLd data={faqData} />
+
         <section
           className="overflow-hidden bg-[var(--color-accent)] shadow-[0_30px_70px_rgba(51,102,255,0.25)]"
           id="products"
@@ -428,6 +723,53 @@ export default async function HomePage({ params }: LocalePageProps) {
           </div>
         </section>
 
+        <section className="mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10">
+          <div className="rounded-[2rem] border border-[var(--color-line)] bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.04)] sm:p-8 lg:p-10">
+            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+              <div>
+                <span className="section-label">{seoContent.eyebrow}</span>
+                <h2 className="section-title">{seoContent.title}</h2>
+                <p className="section-copy">{seoContent.description}</p>
+                <div className="mt-5 space-y-4 text-sm leading-8 text-[var(--color-muted)] sm:text-base">
+                  {seoContent.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid gap-5">
+                <article className="rounded-[1.5rem] border border-[var(--color-line)] bg-[#f8faff] p-5">
+                  <h3 className="text-lg font-semibold text-[var(--color-ink)]">
+                    {seoContent.productHighlightsTitle}
+                  </h3>
+                  <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-muted)] sm:text-base">
+                    {seoContent.productHighlights.map((item) => (
+                      <li className="flex gap-3" key={item}>
+                        <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+
+                <article className="rounded-[1.5rem] border border-[var(--color-line)] bg-[linear-gradient(180deg,#ffffff,#f8faff)] p-5">
+                  <h3 className="text-lg font-semibold text-[var(--color-ink)]">
+                    {seoContent.marketCoverageTitle}
+                  </h3>
+                  <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--color-muted)] sm:text-base">
+                    {seoContent.marketCoverage.map((item) => (
+                      <li className="flex gap-3" key={item}>
+                        <span className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-[var(--color-accent)]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section
           className="mx-auto w-full max-w-[1500px] rounded-[2rem] border border-[var(--color-line)] bg-white px-6 py-8 shadow-[0_18px_40px_rgba(15,23,42,0.04)] sm:px-8 lg:px-10"
           id="company-profile"
@@ -474,6 +816,27 @@ export default async function HomePage({ params }: LocalePageProps) {
                 </article>
               ),
             )}
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-10">
+          <div className="rounded-[2rem] border border-[var(--color-line)] bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.04)] sm:p-8">
+            <h2 className="section-title">{seoContent.faqTitle}</h2>
+            <div className="mt-6 grid gap-4 lg:grid-cols-2">
+              {seoContent.faqs.map((item) => (
+                <article
+                  className="rounded-[1.45rem] border border-[var(--color-line)] bg-[#f8faff] p-5"
+                  key={item.question}
+                >
+                  <h3 className="text-lg font-semibold leading-8 text-[var(--color-ink)]">
+                    {item.question}
+                  </h3>
+                  <p className="mt-3 text-sm leading-8 text-[var(--color-muted)] sm:text-base">
+                    {item.answer}
+                  </p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

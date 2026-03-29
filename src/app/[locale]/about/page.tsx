@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import type { Locale } from "@/lib/i18n";
 import {
@@ -9,6 +10,7 @@ import {
   getLocaleData,
   type LocalePageProps,
 } from "@/lib/locale-page";
+import { buildBreadcrumbStructuredData, getCanonicalUrl, getSiteUrl } from "@/lib/seo";
 
 const WHATSAPP_URL = "https://wa.me/93790691000";
 
@@ -260,12 +262,39 @@ export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
-  const { dictionary, locale: activeLocale } = await getLocaleData(locale);
+  const { locale: activeLocale } = await getLocaleData(locale);
   const content = aboutContent[activeLocale];
 
   return buildLocaleMetadata(activeLocale, "/about", {
-    title: `${dictionary.brand.name} | ${dictionary.header.quickTabs[1].label}`,
+    title:
+      activeLocale === "en"
+        ? "About Khorasan Herat | Steel Production, Rebar Quality, and Project Supply"
+        : activeLocale === "ps"
+          ? "د خراسان هرات په اړه | د فولادو توليد، کیفیت او د پروژو تامين"
+          : "درباره هرات خراسان | تولید فولاد، کیفیت میلگرد و تامین پروژه‌ها",
     description: content.heroDescription,
+    imagePath: "/company/company-warehouse.jpeg",
+    keywords:
+      activeLocale === "en"
+        ? [
+            "about Khorasan Herat",
+            "Herat steel factory",
+            "Afghanistan rebar manufacturer",
+            "steel company profile Afghanistan",
+          ]
+        : activeLocale === "ps"
+          ? [
+              "د خراسان هرات په اړه",
+              "د هرات فولادي فابریکه",
+              "د افغانستان میلګرد جوړونکی",
+              "د فولادو شرکت پېژندنه",
+            ]
+          : [
+              "درباره هرات خراسان",
+              "کارخانه فولاد هرات",
+              "تولیدکننده میلگرد افغانستان",
+              "معرفی شرکت فولادی افغانستان",
+            ],
   });
 }
 
@@ -274,6 +303,52 @@ export default async function AboutPage({ params }: LocalePageProps) {
   const { dictionary, locale: activeLocale } = await getLocaleData(locale);
   const content = aboutContent[activeLocale];
   const isEnglish = activeLocale === "en";
+  const canonicalUrl = getCanonicalUrl(activeLocale, "/about");
+  const breadcrumbData = buildBreadcrumbStructuredData(activeLocale, [
+    {
+      name: activeLocale === "en" ? "Home" : activeLocale === "ps" ? "کور" : "خانه",
+      path: "",
+    },
+    {
+      name: dictionary.header.quickTabs[1].label,
+      path: "/about",
+    },
+  ]);
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: dictionary.header.quickTabs[1].label,
+        description: content.heroDescription,
+        inLanguage: activeLocale,
+        isPartOf: {
+          "@id": `${getSiteUrl()}/#website`,
+        },
+        about: {
+          "@id": `${getSiteUrl()}/#organization`,
+        },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${canonicalUrl}#capabilities`,
+        name:
+          activeLocale === "en"
+            ? "Khorasan Herat capabilities"
+            : activeLocale === "ps"
+              ? "د خراسان هرات وړتیاوې"
+              : "توانمندی‌های هرات خراسان",
+        itemListElement: content.capabilities.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.title,
+          description: item.text,
+        })),
+      },
+    ],
+  };
 
   return (
     <SiteShell
@@ -282,6 +357,9 @@ export default async function AboutPage({ params }: LocalePageProps) {
       pathSuffix="/about"
     >
       <main className="mx-auto flex w-full max-w-[1500px] flex-col gap-8 px-5 pb-14 pt-8 sm:px-8 lg:px-10">
+        <JsonLd data={breadcrumbData} />
+        <JsonLd data={aboutStructuredData} />
+
         <section className="overflow-hidden rounded-[2.2rem] border border-[rgba(255,255,255,0.22)] bg-[linear-gradient(135deg,rgba(18,45,154,0.97),rgba(51,102,255,0.95))] text-white shadow-[0_24px_70px_rgba(51,102,255,0.26)]">
           <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-12">
             <div>

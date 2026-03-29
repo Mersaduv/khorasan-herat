@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 
 import { getDirection, hasLocale, locales } from "@/lib/i18n";
+import { getSiteUrl } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 type LocaleLayoutProps = Readonly<{
@@ -12,10 +13,16 @@ type LocaleLayoutProps = Readonly<{
 export const dynamicParams = false;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
+  applicationName: "Khorasan Herat",
   icons: {
     icon: "/images/favicon.ico",
     shortcut: "/images/favicon.ico",
     apple: "/images/favicon.ico",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

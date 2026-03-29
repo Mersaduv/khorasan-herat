@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { JsonLd } from "@/components/json-ld";
 import { SiteShell } from "@/components/site-shell";
 import {
   buildLocaleMetadata,
   getLocaleData,
   type LocalePageProps,
 } from "@/lib/locale-page";
+import { buildBreadcrumbStructuredData, getCanonicalUrl, getSiteUrl } from "@/lib/seo";
 
 const WHATSAPP_URL = "https://wa.me/93790691000";
 const TELEGRAM_CHANNEL_URL = "https://t.me/khorasanherat";
@@ -35,17 +37,50 @@ export async function generateMetadata({
   params,
 }: LocalePageProps): Promise<Metadata> {
   const { locale } = await params;
-  const { dictionary, locale: activeLocale } = await getLocaleData(locale);
+  const { locale: activeLocale } = await getLocaleData(locale);
 
   return buildLocaleMetadata(activeLocale, "/contact", {
-    title: `${dictionary.brand.name} | ${dictionary.header.quickTabs[2].label}`,
-    description: `${dictionary.footer.phoneLabel}: ${dictionary.footer.phone}`,
+    title:
+      activeLocale === "en"
+        ? "Contact Khorasan Herat | Steel Sales Inquiry, Office Address, and WhatsApp"
+        : activeLocale === "ps"
+          ? "له خراسان هرات سره اړیکه | د پلور استعلام، پته او واتساپ"
+          : "تماس با هرات خراسان | استعلام فروش، آدرس دفتر و واتساپ",
+    description:
+      activeLocale === "en"
+        ? "Contact Khorasan Herat for rebar pricing, steel product inquiries, office directions in Herat, proforma requests, and wholesale project coordination."
+        : activeLocale === "ps"
+          ? "له خراسان هرات سره د میلګرد بیې، فولادي محصولاتو، د دفتر پتې، پیش‌فاکتور او د پروژې د پلور همغږۍ لپاره اړیکه ونیسئ."
+          : "برای استعلام قیمت میلگرد، محصولات فولادی، آدرس دفتر در هرات، درخواست پیش‌فاکتور و هماهنگی فروش پروژه‌ای با هرات خراسان تماس بگیرید.",
+    imagePath: "/company/company-sales.jpeg",
+    keywords:
+      activeLocale === "en"
+        ? [
+            "contact Khorasan Herat",
+            "Herat steel company phone number",
+            "rebar inquiry Herat",
+            "steel supplier WhatsApp Afghanistan",
+          ]
+        : activeLocale === "ps"
+          ? [
+              "د خراسان هرات اړیکه",
+              "د هرات فولادي شرکت شمېره",
+              "د میلګرد استعلام هرات",
+              "د واتساپ له لارې فولادي پلور",
+            ]
+          : [
+              "تماس با هرات خراسان",
+              "شماره شرکت فولاد هرات",
+              "استعلام میلگرد هرات",
+              "واتساپ فروش محصولات فولادی",
+            ],
   });
 }
 
 export default async function ContactPage({ params }: LocalePageProps) {
   const { locale } = await params;
   const { dictionary, locale: activeLocale } = await getLocaleData(locale);
+  const canonicalUrl = getCanonicalUrl(activeLocale, "/contact");
 
   const contactCards = [
     {
@@ -118,6 +153,55 @@ export default async function ContactPage({ params }: LocalePageProps) {
       : activeLocale === "ps"
         ? "په نقشه کې يې خلاص کړه"
         : "باز کردن در نقشه";
+  const breadcrumbData = buildBreadcrumbStructuredData(activeLocale, [
+    {
+      name: activeLocale === "en" ? "Home" : activeLocale === "ps" ? "کور" : "خانه",
+      path: "",
+    },
+    {
+      name: dictionary.header.quickTabs[2].label,
+      path: "/contact",
+    },
+  ]);
+  const contactStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: dictionary.header.quickTabs[2].label,
+        description: introText,
+        inLanguage: activeLocale,
+        isPartOf: {
+          "@id": `${getSiteUrl()}/#website`,
+        },
+        about: {
+          "@id": `${getSiteUrl()}/#organization`,
+        },
+      },
+      {
+        "@type": "ContactPoint",
+        "@id": `${canonicalUrl}#sales-contact`,
+        contactType: "sales",
+        telephone: "+93 790 165 008",
+        email: "info@khorasanherat.com",
+        areaServed: "AF",
+        availableLanguage: ["fa", "ps", "en"],
+      },
+      {
+        "@type": "Place",
+        "@id": `${canonicalUrl}#head-office`,
+        name: locationCardTitle,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Darb Malik, Sarak Manaraha, beside Shahzadegan",
+          addressLocality: "Herat",
+          addressCountry: "AF",
+        },
+      },
+    ],
+  };
 
   return (
     <SiteShell
@@ -126,6 +210,9 @@ export default async function ContactPage({ params }: LocalePageProps) {
       pathSuffix="/contact"
     >
       <main className="mx-auto flex w-full max-w-[1920px] flex-col gap-8 px-0 pb-14 pt-0">
+        <JsonLd data={breadcrumbData} />
+        <JsonLd data={contactStructuredData} />
+
         <section
           className="overflow-hidden border-y border-[var(--color-line)] bg-white shadow-[0_20px_45px_rgba(15,23,42,0.04)]"
           id="map-section"
