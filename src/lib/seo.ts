@@ -17,7 +17,7 @@ const localeMetadata = {
     localeTag: "fa_AF",
     organizationName: "شرکت صنعتی ذوب آهن خراسان هرات",
     keywords: [
-      "هرات خراسان",
+      "خراسان هرات",
       "ذوب آهن خراسان هرات",
       "کارخانه میلگرد هرات",
       "میلگرد هرات",
@@ -218,7 +218,7 @@ export function buildOrganizationStructuredData(locale: Locale, dictionary: Dict
         "@type": "Organization",
         "@id": organizationId,
         name: profile.organizationName,
-        alternateName: ["هرات خراسان", "Khorasan Herat", dictionary.brand.name],
+        alternateName: ["خراسان هرات", "Khorasan Herat", dictionary.brand.name],
         url: siteUrl,
         logo: {
           "@type": "ImageObject",

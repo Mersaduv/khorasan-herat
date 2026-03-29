@@ -327,13 +327,13 @@ const productDetailSections: Record<Locale, ProductDetailSection[]> = {
 
 const homeSeoSections: Record<Locale, HomeSeoSection> = {
   fa: {
-    eyebrow: "سئوی محتوایی و معرفی تخصصی",
+    eyebrow: "توان تولید و بازار هدف",
     title: "تولید میلگرد و تأمین محصولات فولادی برای پروژه‌های ساختمانی، صنعتی و عمرانی افغانستان",
     description:
-      "این صفحه به‌صورت هدفمند روی کلمات کلیدی اصلی برند و بازار هدف بازنویسی شده تا کاربر و موتور جستجو هر دو دقیق‌تر بفهمند هرات خراسان چه چیزی تولید می‌کند، چه مزیتی دارد و برای چه نوع پروژه‌هایی مناسب است.",
+      "خراسان هرات با تمرکز بر تولید میلگرد، تأمین محصولات فولادی و هماهنگی سریع فروش، خود را به‌عنوان یک مجموعه قابل اتکا برای پروژه‌های ساختمانی، صنعتی و عمرانی در افغانستان معرفی می‌کند.",
     paragraphs: [
-      "هرات خراسان به‌عنوان یک مجموعه فعال در صنعت فولاد افغانستان، روی تولید میلگرد و سیخ‌گول از سایز ۸ تا ۳۲ میلی‌متر تمرکز دارد. ترکیب این دامنه تولید با فروش مستقیم، کنترل کیفیت، تست لابراتوار و پاسخ‌گویی سریع، تصویری روشن از یک برند پروژه‌محور ارائه می‌دهد.",
-      "تمرکز محتوایی این صفحه فقط معرفی ظاهری شرکت نیست. در متن‌ها و ساختار سئو، عباراتی مانند کارخانه میلگرد هرات، فروش میلگرد افغانستان، محصولات فولادی برای پروژه‌های ساختمانی و صدور سریع پیش‌فاکتور به‌شکل طبیعی استفاده شده‌اند تا هم جستجوهای برند و هم جستجوهای محصولی پوشش داده شوند.",
+      "خراسان هرات به‌عنوان یک مجموعه فعال در صنعت فولاد افغانستان، روی تولید میلگرد و سیخ‌گول از سایز ۸ تا ۳۲ میلی‌متر تمرکز دارد. ترکیب این دامنه تولید با فروش مستقیم، کنترل کیفیت، تست لابراتوار و پاسخ‌گویی سریع، تصویری روشن از یک برند پروژه‌محور ارائه می‌دهد.",
+      "این مجموعه برای خریداران عمده، پیمانکاران و شرکت‌هایی که به محصول استاندارد، تحویل منظم و ارتباط مستقیم نیاز دارند، گزینه‌ای مناسب به شمار می‌آید. اشاره به استاندارد ASTM، گریدهای 60 و 75 و مسیرهای روشن ارتباطی، شناخت بهتری از توان فنی و تجاری شرکت ایجاد می‌کند.",
     ],
     productHighlightsTitle: "محورهای کلیدی محصول و مزیت رقابتی",
     productHighlights: [
@@ -352,7 +352,7 @@ const homeSeoSections: Record<Locale, HomeSeoSection> = {
     faqTitle: "پرسش‌های پرتکرار خریداران",
     faqs: [
       {
-        question: "هرات خراسان چه محصولاتی را بیشتر عرضه می‌کند؟",
+        question: "خراسان هرات چه محصولاتی را بیشتر عرضه می‌کند؟",
         answer:
           "تمرکز اصلی شرکت روی تولید و عرضه میلگرد و سیخ‌گول در بازه ۸ تا ۳۲ میلی‌متر و همچنین تأمین محصولات فولادی برای پروژه‌های ساختمانی، صنعتی و عمرانی است.",
       },
@@ -367,23 +367,23 @@ const homeSeoSections: Record<Locale, HomeSeoSection> = {
           "در معرفی برند روی کنترل کیفیت، استاندارد ASTM، گریدهای 60 و 75، وزن دقیق و تست لابراتوار تاکید شده تا خریدار پیش از سفارش شناخت فنی روشن‌تری داشته باشد.",
       },
       {
-        question: "چطور می‌توان برای استعلام یا سفارش با هرات خراسان ارتباط گرفت؟",
+        question: "چطور می‌توان برای استعلام یا سفارش با خراسان هرات ارتباط گرفت؟",
         answer:
           "کاربر می‌تواند از طریق شماره‌های تماس، واتساپ، ایمیل رسمی و کانال تلگرام شرکت برای استعلام قیمت، دریافت پیش‌فاکتور و هماهنگی فروش اقدام کند.",
       },
     ],
-    productName: "میلگرد و سیخ‌گول هرات خراسان",
+    productName: "میلگرد و سیخ‌گول خراسان هرات",
     productDescription:
       "میلگرد و محصولات فولادی پروژه‌محور در سایز ۸ تا ۳۲ میلی‌متر با تمرکز بر کیفیت، فروش مستقیم و تأمین قابل اتکا برای پروژه‌های افغانستان.",
   },
   ps: {
-    eyebrow: "سيويي محتوا او تخصصي پېژندنه",
+    eyebrow: "د توليد ځواک او هدف بازار",
     title: "د افغانستان د ساختماني، صنعتي او عمراني پروژو لپاره د میلګرد او فولادي محصولاتو تامين",
     description:
-      "دا پاڼه داسې جوړه شوې چې هم کاروونکي او هم د لټون ماشينونه په روښانه ډول درک کړي چې خراسان هرات څه توليدوي، څه ډول پېرودونکو ته خدمت کوي او اصلي رقابتي ګټه يې څه ده.",
+      "خراسان هرات د میلګرد د توليد، فولادي محصولاتو د تامين او د پلور د چټکې همغږۍ له لارې ځان د افغانستان د ساختماني، صنعتي او عمراني پروژو لپاره د باور وړ مجموعه معرفي کوي.",
     paragraphs: [
       "خراسان هرات د افغانستان د فولادو په بازار کې د میلګرد او سيخ ګول د توليد پر محور ولاړ برانډ دی. د ۸ تر ۳۲ ملي متره توليدي لړۍ، د کیفیت کنټرول، د لابراتوار ازموينه او د پلور مستقيمه همغږي دا برانډ د پروژو لپاره لا باوري کوي.",
-      "په دې پاڼه کې د هرات د میلګرد فابریکه، د افغانستان د فولادي محصولاتو پلور، د پروژو لپاره د اوسپنې تامين او چټک پیش‌فاکتور غوندې مهمې کليدي جملې په طبيعي ډول ځای پر ځای شوې دي څو برانډي او محصولي لټونونه دواړه پیاوړي شي.",
+      "دا مجموعه د عمده پېرودونکو، قرارداديانو او هغو شرکتونو لپاره مناسبه ښکاري چې معياري محصول، منظم تحويل او مستقیمه اړیکه غواړي. د ASTM معیار، 60 او 75 ګریډونو او روښانو ارتباطي لارو یادونه د شرکت فني او تجارتي انځور لا پیاوړی کوي.",
     ],
     productHighlightsTitle: "د محصول او سیالۍ اصلي ټکي",
     productHighlights: [
@@ -427,13 +427,13 @@ const homeSeoSections: Record<Locale, HomeSeoSection> = {
       "د ۸ تر ۳۲ ملي متره میلګرد او فولادي محصولاتو تامين د افغانستان د پروژو لپاره، له کیفیت کنټرول او چټک پلور همغږۍ سره.",
   },
   en: {
-    eyebrow: "Search-focused company positioning",
+    eyebrow: "Production strength and market focus",
     title: "Rebar manufacturing and steel product supply for construction projects in Herat and across Afghanistan",
     description:
-      "This page is written to clarify the company’s real commercial focus for both users and search engines: rebar manufacturing, steel product supply, direct sales coordination, and project-ready support.",
+      "Khorasan Herat presents itself as a dependable steel company focused on rebar manufacturing, steel product supply, direct sales coordination, and practical support for construction and industrial projects across Afghanistan.",
     paragraphs: [
       "Khorasan Herat positions itself as a steel manufacturer and supplier serving construction, industrial, and infrastructure projects. Its strongest product signal is rebar and steel bars from 8 mm to 32 mm, supported by quality control, laboratory testing, and responsive sales coordination.",
-      "The homepage copy now naturally targets high-intent searches such as Herat rebar manufacturer, Afghanistan steel supplier, project steel supply, wholesale rebar sales, and fast proforma issuance. That helps the site compete not only for brand searches but also for product and procurement queries.",
+      "The company is especially relevant for wholesale buyers, contractors, and project teams that need standard-compliant material, steady delivery, and direct communication. References to ASTM, grade 60 and 75 production, and clear inquiry channels help strengthen both technical and commercial trust.",
     ],
     productHighlightsTitle: "Core product and commercial strengths",
     productHighlights: [
@@ -527,13 +527,13 @@ export async function generateMetadata({
         ? "Khorasan Herat | Rebar and Steel Products Supplier in Herat, Afghanistan"
         : activeLocale === "ps"
           ? "خراسان هرات | په هرات کې د میلګرد او فولادي محصولاتو عرضه کوونکی"
-          : "هرات خراسان | تولید میلگرد و محصولات فولادی در هرات برای پروژه‌های افغانستان",
+          : "خراسان هرات | تولید میلگرد و محصولات فولادی در هرات برای پروژه‌های افغانستان",
     description:
       activeLocale === "en"
         ? "Official multilingual website of Khorasan Herat for rebar manufacturing, steel products, wholesale supply, quality control, and fast project sales coordination in Afghanistan."
         : activeLocale === "ps"
           ? "د خراسان هرات رسمي وېب‌پاڼه د میلګرد توليد، فولادي محصولاتو، عمده پلور، کیفیت کنټرول او د افغانستان د پروژو لپاره د چټک پلور همغږۍ لپاره."
-          : "وب‌سایت رسمی هرات خراسان برای تولید میلگرد، فروش محصولات فولادی، تامین عمده پروژه‌ها، کنترل کیفیت و صدور سریع پیش‌فاکتور در افغانستان.",
+          : "وب‌سایت رسمی خراسان هرات برای تولید میلگرد، فروش محصولات فولادی، تامین عمده پروژه‌ها، کنترل کیفیت و صدور سریع پیش‌فاکتور در افغانستان.",
     imagePath: "/company/company-projects.jpeg",
     keywords:
       activeLocale === "en"
@@ -586,7 +586,7 @@ export default async function HomePage({ params }: LocalePageProps) {
             ? "Khorasan Herat Home"
             : activeLocale === "ps"
               ? "د خراسان هرات کور"
-              : "خانه هرات خراسان",
+              : "خانه خراسان هرات",
         description: seoContent.description,
         inLanguage: activeLocale,
         isPartOf: {

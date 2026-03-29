@@ -45,13 +45,13 @@ export async function generateMetadata({
         ? "Contact Khorasan Herat | Steel Sales Inquiry, Office Address, and WhatsApp"
         : activeLocale === "ps"
           ? "له خراسان هرات سره اړیکه | د پلور استعلام، پته او واتساپ"
-          : "تماس با هرات خراسان | استعلام فروش، آدرس دفتر و واتساپ",
+          : "تماس با خراسان هرات | استعلام فروش، آدرس دفتر و واتساپ",
     description:
       activeLocale === "en"
         ? "Contact Khorasan Herat for rebar pricing, steel product inquiries, office directions in Herat, proforma requests, and wholesale project coordination."
         : activeLocale === "ps"
           ? "له خراسان هرات سره د میلګرد بیې، فولادي محصولاتو، د دفتر پتې، پیش‌فاکتور او د پروژې د پلور همغږۍ لپاره اړیکه ونیسئ."
-          : "برای استعلام قیمت میلگرد، محصولات فولادی، آدرس دفتر در هرات، درخواست پیش‌فاکتور و هماهنگی فروش پروژه‌ای با هرات خراسان تماس بگیرید.",
+          : "برای استعلام قیمت میلگرد، محصولات فولادی، آدرس دفتر در هرات، درخواست پیش‌فاکتور و هماهنگی فروش پروژه‌ای با خراسان هرات تماس بگیرید.",
     imagePath: "/company/company-sales.jpeg",
     keywords:
       activeLocale === "en"
@@ -69,7 +69,7 @@ export async function generateMetadata({
               "د واتساپ له لارې فولادي پلور",
             ]
           : [
-              "تماس با هرات خراسان",
+              "تماس با خراسان هرات",
               "شماره شرکت فولاد هرات",
               "استعلام میلگرد هرات",
               "واتساپ فروش محصولات فولادی",
@@ -110,7 +110,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
       ? "Our team is available for inquiries, sales coordination, order follow-up, and direct communication through the channels below."
       : activeLocale === "ps"
         ? "زموږ ټيم د استعلام، د پلور د همغږۍ، د سفارش د تعقيب او مستقيم ارتباط لپاره له لاندې لارو چمتو دی."
-        : "تیم هرات خراسان برای استعلام، هماهنگی فروش، پیگیری سفارش و ارتباط مستقیم از مسیرهای زیر در دسترس شماست.";
+        : "تیم خراسان هرات برای استعلام، هماهنگی فروش، پیگیری سفارش و ارتباط مستقیم از مسیرهای زیر در دسترس شماست.";
 
   const mapTitle =
     activeLocale === "en"
