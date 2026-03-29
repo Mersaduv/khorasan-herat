@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+public/vids/
+*.mp4
 
 # debug
 npm-debug.log*
