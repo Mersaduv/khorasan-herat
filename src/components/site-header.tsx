@@ -256,13 +256,13 @@ export function SiteHeader({
           </div>
 
           <div
-            className={`hidden flex-wrap items-center justify-between gap-4 transition-all duration-300 lg:flex xl:flex-nowrap xl:gap-6 ${
+            className={`hidden items-center justify-between gap-4 transition-all duration-300 lg:flex lg:flex-nowrap xl:gap-6 ${
               isCondensed ? "py-2.5" : "py-4"
             }`}
           >
             <div
-              className={`w-full transition-all duration-300 xl:flex-1 ${
-                isCondensed ? "xl:max-w-[600px]" : "xl:max-w-[680px]"
+              className={`min-w-0 flex-1 transition-all duration-300 ${
+                isCondensed ? "max-w-[520px] xl:max-w-[600px]" : "max-w-[580px] xl:max-w-[680px]"
               }`}
             >
               <HeaderSearch
@@ -272,7 +272,7 @@ export function SiteHeader({
               />
             </div>
 
-            <div className="flex w-full shrink-0 flex-wrap items-center justify-end gap-3 xl:w-auto xl:flex-nowrap">
+            <div className="flex shrink-0 items-center justify-end gap-3">
               <a
                 className={`flex items-center gap-3 rounded-[1rem] border border-[#cce7d8] bg-[linear-gradient(135deg,#f3fff8,#ffffff)] shadow-[0_12px_24px_rgba(14,122,67,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_28px_rgba(14,122,67,0.14)] ${
                   isCondensed ? "px-4 py-2.5" : "px-5 py-3"
