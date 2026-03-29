@@ -10,7 +10,7 @@ import {
   type LocalePageProps,
 } from "@/lib/locale-page";
 
-const WHATSAPP_URL = "https://wa.me/93791954490";
+const WHATSAPP_URL = "https://wa.me/93790691000";
 
 type AboutContent = {
   heroEyebrow: string;
@@ -389,7 +389,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
           <h2 className="section-title">{content.capabilityTitle}</h2>
           <p className="section-copy">{content.capabilityDescription}</p>
 
-          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
             {content.capabilities.map((item) => (
               <article
                 className="rounded-[1.6rem] border border-[var(--color-line)] bg-[#f8faff] p-5"
@@ -459,7 +459,7 @@ export default async function AboutPage({ params }: LocalePageProps) {
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <div className="flex flex-col gap-3 md:flex-row md:flex-wrap lg:justify-end">
               <Link
                 className="inline-flex items-center justify-center rounded-[1.2rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(15,127,229,0.24)]"
                 href={`/${activeLocale}/contact`}

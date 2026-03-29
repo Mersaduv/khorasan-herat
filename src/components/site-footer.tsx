@@ -8,7 +8,7 @@ type SiteFooterProps = Readonly<{
   locale: Locale;
 }>;
 
-const WHATSAPP_URL = "https://wa.me/93791954490";
+const WHATSAPP_URL = "https://wa.me/93790691000";
 const TELEGRAM_CHANNEL_URL = "https://t.me/khorasanherat";
 const TELEGRAM_CONTACT_URL = "https://t.me/khodairhamCom";
 const INSTAGRAM_URL = "https://www.instagram.com/khorasan_herat_iron_compani";
@@ -39,10 +39,10 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
     <footer className="mt-14 border-t border-[var(--color-line)] bg-[#f6f8fd]">
       <div className="mx-auto w-full max-w-[1500px] px-5 py-12 sm:px-8 lg:px-10">
         <div className="rounded-[2rem] border border-[var(--color-line)] bg-white px-6 py-8 shadow-[0_20px_45px_rgba(15,23,42,0.04)] sm:px-8">
-          <div className="grid gap-10 xl:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]">
-            <div className="space-y-5">
+          <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.3fr_0.9fr_0.9fr_0.9fr]">
+            <div className="space-y-5 md:col-span-2 xl:col-span-1">
               <div className="flex items-center gap-4">
-                <div className="flex h-24 w-2h-24 items-center justify-center overflow-hidden rounded-[1.35rem] bg-[var(--color-accent-soft)]">
+                <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.35rem] bg-[var(--color-accent-soft)]">
                   <Image alt={dictionary.brand.name} height={100} src="/images/logo.png" width={100} />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
           </div>
 
           <div
-            className="mt-10 grid gap-4 border-t border-[var(--color-line)] pt-8 lg:grid-cols-5"
+            className="mt-10 grid gap-4 border-t border-[var(--color-line)] pt-8 md:grid-cols-2 xl:grid-cols-4"
             id="contact"
           >
             <div className="rounded-[1.5rem] bg-[#f8faff] p-5">
@@ -170,7 +170,7 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-4 border-t border-[var(--color-line)] pt-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-[var(--color-line)] pt-6 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((item) => (
                 <Link
@@ -186,9 +186,9 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
               ))}
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 md:flex-row md:flex-wrap xl:flex-nowrap">
               <Link
-                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,211,102,0.24)]"
+                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-6 py-4 text-center text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,211,102,0.24)]"
                 href={WHATSAPP_URL}
                 rel="noreferrer"
                 target="_blank"
@@ -198,7 +198,7 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
               </Link>
 
               <Link
-                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(15,127,229,0.24)]"
+                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-6 py-4 text-center text-sm font-semibold text-white shadow-[0_16px_30px_rgba(15,127,229,0.24)]"
                 href={TELEGRAM_CHANNEL_URL}
                 rel="noreferrer"
                 target="_blank"
@@ -208,7 +208,7 @@ export function SiteFooter({ dictionary, locale }: SiteFooterProps) {
               </Link>
 
               <Link
-                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] border border-[#b7ddff] bg-white px-6 py-4 text-sm font-semibold text-[#0f7fe5] shadow-[0_16px_30px_rgba(15,127,229,0.12)]"
+                className="inline-flex items-center justify-center gap-3 rounded-[1.4rem] border border-[#b7ddff] bg-white px-6 py-4 text-center text-sm font-semibold text-[#0f7fe5] shadow-[0_16px_30px_rgba(15,127,229,0.12)]"
                 href={TELEGRAM_CONTACT_URL}
                 rel="noreferrer"
                 target="_blank"

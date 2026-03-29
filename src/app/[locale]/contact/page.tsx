@@ -8,7 +8,7 @@ import {
   type LocalePageProps,
 } from "@/lib/locale-page";
 
-const WHATSAPP_URL = "https://wa.me/93791954490";
+const WHATSAPP_URL = "https://wa.me/93790691000";
 const TELEGRAM_CHANNEL_URL = "https://t.me/khorasanherat";
 const MAP_LOCATION = "هرات، درب ملک، سرک مناره‌ها، جنب شهزادگان، هرات";
 const MAP_SEARCH_URL =
@@ -206,7 +206,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
           </div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1500px] gap-5 px-5 sm:px-8 lg:grid-cols-2 lg:px-10">
+        <section className="mx-auto grid w-full max-w-[1500px] gap-5 px-5 sm:px-8 md:grid-cols-2 lg:px-10">
           {contactCards.map((item) => (
             <Link
               className="rounded-[1.8rem] border border-[var(--color-line)] bg-[#f8faff] p-6 shadow-[0_16px_35px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(15,23,42,0.07)]"
@@ -235,7 +235,7 @@ export default async function ContactPage({ params }: LocalePageProps) {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <div className="flex flex-col gap-3 md:flex-row md:flex-wrap lg:justify-end">
                 <Link
                   className="inline-flex items-center justify-center rounded-[1.2rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-6 py-4 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(37,211,102,0.22)]"
                   href={WHATSAPP_URL}

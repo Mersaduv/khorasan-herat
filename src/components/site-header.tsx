@@ -16,7 +16,7 @@ type SiteHeaderProps = Readonly<{
   pathSuffix?: string;
 }>;
 
-const WHATSAPP_NUMBER = "93791954490";
+const WHATSAPP_NUMBER = "93790691000";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 const TELEGRAM_CHANNEL_URL = "https://t.me/khorasanherat";
 
@@ -200,8 +200,8 @@ export function SiteHeader({
               isCondensed ? "py-2.5" : "py-3"
             }`}
           >
-            <div className="flex items-center justify-between gap-6">
-              <div className="flex gap-6">
+            <div className="flex flex-wrap items-center justify-between gap-4 xl:flex-nowrap xl:gap-6">
+              <div className="flex min-w-0 flex-wrap items-center gap-4 xl:flex-nowrap xl:gap-6">
                 <Link className="flex items-center gap-4" href={`/${locale}`}>
                   <Image
                     alt={dictionary.brand.name}
@@ -229,10 +229,10 @@ export function SiteHeader({
                   </div>
                 </Link>
 
-                <nav className="flex items-center gap-6 text-[1.05rem] font-semibold text-[var(--color-ink)]">
+                <nav className="flex flex-wrap items-center gap-2 text-[0.97rem] font-semibold text-[var(--color-ink)] xl:gap-6 xl:text-[1.05rem]">
                   {primaryNav.map((item) => (
                     <Link
-                      className={`rounded-md px-3 py-3 transition-colors hover:bg-blue-50 hover:text-[var(--color-accent)] ${
+                      className={`rounded-md px-2.5 py-2.5 transition-colors hover:bg-blue-50 hover:text-[var(--color-accent)] xl:px-3 xl:py-3 ${
                         item.isActive ? "text-[var(--color-accent)]" : ""
                       }`}
                       href={item.href}
@@ -256,13 +256,13 @@ export function SiteHeader({
           </div>
 
           <div
-            className={`hidden items-center justify-between gap-6 transition-all duration-300 lg:flex ${
+            className={`hidden flex-wrap items-center justify-between gap-4 transition-all duration-300 lg:flex xl:flex-nowrap xl:gap-6 ${
               isCondensed ? "py-2.5" : "py-4"
             }`}
           >
             <div
-              className={`w-full transition-all duration-300 ${
-                isCondensed ? "max-w-[600px]" : "max-w-[680px]"
+              className={`w-full transition-all duration-300 xl:flex-1 ${
+                isCondensed ? "xl:max-w-[600px]" : "xl:max-w-[680px]"
               }`}
             >
               <HeaderSearch
@@ -272,7 +272,7 @@ export function SiteHeader({
               />
             </div>
 
-            <div className="flex shrink-0 items-center gap-3">
+            <div className="flex w-full shrink-0 flex-wrap items-center justify-end gap-3 xl:w-auto xl:flex-nowrap">
               <a
                 className={`flex items-center gap-3 rounded-[1rem] border border-[#cce7d8] bg-[linear-gradient(135deg,#f3fff8,#ffffff)] shadow-[0_12px_24px_rgba(14,122,67,0.1)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_28px_rgba(14,122,67,0.14)] ${
                   isCondensed ? "px-4 py-2.5" : "px-5 py-3"
@@ -287,7 +287,7 @@ export function SiteHeader({
                 <span className="flex items-center gap-2 text-base font-semibold text-[#0e7a43]">
                   <span>{locale === "en" ? "Inquiry:" : locale === "ps" ? "استعلام:" : "استعلام:"}</span>
                   <span dir="ltr" style={{ unicodeBidi: "isolate" }}>
-                    +93791954490
+                    +93790691000
                   </span>
                 </span>
               </a>
@@ -320,14 +320,9 @@ export function SiteHeader({
           <div className="flex flex-col gap-4 py-4 lg:hidden">
             <div className="flex items-center justify-between gap-3" dir={isRtl ? "rtl" : "ltr"}>
               <Link
-                className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : "flex-row"}`}
+                className={`flex items-center gap-3`}
                 href={`/${locale}`}
               >
-                <div className={isRtl ? "text-right" : "text-left"}>
-                  <div className="text-base font-bold text-[var(--color-ink)]">
-                    {dictionary.brand.name}
-                  </div>
-                </div>
                 <Image
                   alt={dictionary.brand.name}
                   height={72}
@@ -336,6 +331,12 @@ export function SiteHeader({
                   style={{ height: "auto", width: 72 }}
                   width={72}
                 />
+                <div className={isRtl ? "text-right" : "text-left"}>
+                  <div className="text-base font-bold text-[var(--color-ink)]">
+                    {dictionary.brand.name}
+                  </div>
+                </div>
+                
               </Link>
 
               <LanguageSwitcher
@@ -368,51 +369,92 @@ export function SiteHeader({
               placeholder={searchPlaceholder}
             />
 
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div
+              className={`grid gap-2 transition-all duration-300 ${
+                isCondensed ? "grid-cols-2" : "grid-cols-1 sm:grid-cols-2 gap-3"
+              }`}
+            >
               <a
-                className="flex items-center justify-between gap-3 rounded-[0.95rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-3.5 py-3.5 text-white shadow-[0_14px_26px_rgba(37,211,102,0.2)]"
+                className={`flex items-center text-white transition-all duration-300 ${
+                  isCondensed
+                    ? "justify-center gap-2 rounded-[0.85rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-2.5 py-2.5 shadow-[0_10px_20px_rgba(37,211,102,0.18)]"
+                    : "justify-between gap-3 rounded-[0.95rem] bg-[linear-gradient(135deg,#25d366,#15b956)] px-3.5 py-3.5 shadow-[0_14px_26px_rgba(37,211,102,0.2)]"
+                }`}
                 href={WHATSAPP_URL}
                 rel="noreferrer"
                 target="_blank"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/18">
-                  <Image alt="WhatsApp" height={21} src="/icons/whatsapp.svg" width={21} />
+                <span
+                  className={`flex shrink-0 items-center justify-center rounded-full bg-white/18 transition-all duration-300 ${
+                    isCondensed ? "h-8 w-8" : "h-10 w-10"
+                  }`}
+                >
+                  <Image
+                    alt="WhatsApp"
+                    height={isCondensed ? 18 : 21}
+                    src="/icons/whatsapp.svg"
+                    width={isCondensed ? 18 : 21}
+                  />
                 </span>
-                <span className="flex flex-col">
-                  <span className="text-xs font-medium text-white/85">
-                    {locale === "en" ? "Quick inquiry" : locale === "ps" ? "چټک استعلام" : "استعلام سریع"}
+                <span className={`min-w-0 ${isCondensed ? "text-center" : "flex flex-col"}`}>
+                  {isCondensed ? (
+                    <span className="text-sm font-bold">WhatsApp</span>
+                  ) : (
+                    <>
+                      <span className="text-xs font-medium text-white/85">
+                        {locale === "en" ? "Quick inquiry" : locale === "ps" ? "چټک استعلام" : "استعلام سریع"}
+                      </span>
+                      <span className="text-base font-extrabold" dir="ltr" style={{ unicodeBidi: "isolate" }}>
+                        +93790691000
+                      </span>
+                    </>
+                  )}
+                </span>
+                {!isCondensed ? (
+                  <span className="rounded-[0.65rem] bg-white/18 px-3 py-2 text-xs font-semibold">
+                    WhatsApp
                   </span>
-                  <span className="text-base font-extrabold" dir="ltr" style={{ unicodeBidi: "isolate" }}>
-                    +93791954490
-                  </span>
-                </span>
-                <span className="rounded-[0.65rem] bg-white/18 px-3 py-2 text-xs font-semibold">
-                  WhatsApp
-                </span>
+                ) : null}
               </a>
 
               <a
-                className="flex items-center justify-between gap-3 rounded-[0.95rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-3.5 py-3.5 text-white shadow-[0_14px_26px_rgba(15,127,229,0.22)]"
+                className={`flex items-center text-white transition-all duration-300 ${
+                  isCondensed
+                    ? "justify-center gap-2 rounded-[0.85rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-2.5 py-2.5 shadow-[0_10px_20px_rgba(15,127,229,0.18)]"
+                    : "justify-between gap-3 rounded-[0.95rem] bg-[linear-gradient(135deg,#2aabee,#0f7fe5)] px-3.5 py-3.5 shadow-[0_14px_26px_rgba(15,127,229,0.22)]"
+                }`}
                 href={TELEGRAM_CHANNEL_URL}
                 rel="noreferrer"
                 target="_blank"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/18">
+                <span
+                  className={`flex shrink-0 items-center justify-center rounded-full bg-white/18 transition-all duration-300 ${
+                    isCondensed ? "h-8 w-8" : "h-10 w-10"
+                  }`}
+                >
                   <TelegramIcon />
                 </span>
-                <span className="flex flex-col">
-                  <span className="text-xs font-medium text-white/85">
-                    {locale === "en"
-                      ? "Telegram channel"
-                      : locale === "ps"
-                        ? "د ټیلیګرام کانال"
-                        : "کانال تلگرام"}
+                <span className={`min-w-0 ${isCondensed ? "text-center" : "flex flex-col"}`}>
+                  {isCondensed ? (
+                    <span className="text-sm font-bold">Telegram</span>
+                  ) : (
+                    <>
+                      <span className="text-xs font-medium text-white/85">
+                        {locale === "en"
+                          ? "Telegram channel"
+                          : locale === "ps"
+                            ? "د ټیلیګرام کانال"
+                            : "کانال تلگرام"}
+                      </span>
+                      <span className="text-base font-extrabold">@khorasanherat</span>
+                    </>
+                  )}
+                </span>
+                {!isCondensed ? (
+                  <span className="rounded-[0.65rem] bg-white/18 px-3 py-2 text-xs font-semibold">
+                    Telegram
                   </span>
-                  <span className="text-base font-extrabold">@khorasanherat</span>
-                </span>
-                <span className="rounded-[0.65rem] bg-white/18 px-3 py-2 text-xs font-semibold">
-                  Telegram
-                </span>
+                ) : null}
               </a>
             </div>
           </div>
